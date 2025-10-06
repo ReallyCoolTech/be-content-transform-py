@@ -1,0 +1,17 @@
+[project]
+name = "contra"
+version = "0.1.0"
+description = "A multi-purpose content transform tool built with a hexagonal architecture"
+readme = "README.md"
+authors = [
+    { name = "DanHugoDanHugo", email = "dhugo@reallycool.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+contra = "contra:main"
+
+[build-system]
+requires = ["uv_build>=0.8.23,<0.9.0"]
+build-backend = "uv_build"
