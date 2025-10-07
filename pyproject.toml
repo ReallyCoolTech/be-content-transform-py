@@ -7,11 +7,26 @@ authors = [
     { name = "DanHugoDanHugo", email = "dhugo@reallycool.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "semver>=3.0.4",
+]
 
 [project.scripts]
-contra = "contra:main"
+contra = "contra.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.8.23,<0.9.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.4"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+    "src.contra",
+]
