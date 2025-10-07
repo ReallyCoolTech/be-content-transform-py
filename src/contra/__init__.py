@@ -15,5 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with be-content-transform-py.  If not, see <https://www.gnu.org/licenses/>.
 
-def main() -> None:
-    print("Hello from contra!")
+import semver
+
+__version_info__ = semver.Version.parse("0.1.0")
+__version__ = str(__version_info__)
