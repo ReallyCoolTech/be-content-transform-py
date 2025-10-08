@@ -15,10 +15,33 @@
 # You should have received a copy of the GNU General Public License
 # along with be-content-transform-py.  If not, see <https://www.gnu.org/licenses/>.
 
+import typer
+from typer.testing import CliRunner
+
 import contra
+from contra.cli import app
+
 from . import __version__, __version_info__
+
+runner = CliRunner()
+
 
 def test_version():
 	assert contra.__version__ == __version__
 
+def test_version_info():
+	assert contra.__version_info__ == __version_info__
 
+def test_app_no_command():
+	result = runner.invoke(app)
+	assert result.exit_code == 2
+
+def test_app_version():
+	result = runner.invoke(app, ["version"])
+	assert result.exit_code == 0
+	assert f"{__version__}" in result.output
+
+def test_app_semver():
+	result = runner.invoke(app, ["semver"])
+	assert result.exit_code == 0
+	assert f"{repr(__version_info__)}" in result.output

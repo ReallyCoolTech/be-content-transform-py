@@ -15,11 +15,27 @@
 # You should have received a copy of the GNU General Public License
 # along with be-content-transform-py.  If not, see <https://www.gnu.org/licenses/>.
 
-import semver
 import os
+from typing import Optional
+
+import semver
+import typer
 
 from . import __version__, __version_info__
 
+app = typer.Typer(no_args_is_help=True)
 
-def main() -> None:
-	return (f"In {__name__} Version:{__version__}")
+
+@app.command()
+def version() -> str:
+	print(f"{__version__}")
+	raise typer.Exit()
+
+@app.command()
+def semver() -> str:
+	print(f"{repr(__version_info__)}")
+	raise typer.Exit()
+
+
+if __name__ == "__main__":
+	app()
